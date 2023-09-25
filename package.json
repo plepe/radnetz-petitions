@@ -13,5 +13,8 @@
   "bugs": {
     "url": "https://github.com/plepe/radnetz-petitions/issues"
   },
-  "homepage": "https://github.com/plepe/radnetz-petitions#readme"
+  "homepage": "https://github.com/plepe/radnetz-petitions#readme",
+  "dependencies": {
+    "drupal-rest": "github:plepe/drupal-rest-js"
+  }
 }

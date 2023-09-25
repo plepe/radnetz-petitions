@@ -1,0 +1,8 @@
+{
+  "tmpDir": "/tmp",
+  "drupal": {
+    "user": "importer",
+    "pass": "",
+    "url": "https://example.com"
+  }
+}
