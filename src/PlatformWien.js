@@ -16,13 +16,15 @@ module.exports = class PlatformWien {
           })
           .filter(v => v)
 
+        const done = data[12].readOnlyLikeText ? 1 : 0
+
         const result = {
           title: data[0].titelHTML,
           shortText: data[6].value,
-          text: data[13].value,
-          count: parseInt(data[15].value),
-          active: data[16].value === 'Freigegeben',
-          startDate: convertDate(data[14].value)
+          text: data[12 + done].value,
+          count: parseInt(data[14 + done].value),
+          active: data[15 + done].value === 'Freigegeben',
+          startDate: convertDate(data[13 + done].value)
         }
 
         callback(null, result)
