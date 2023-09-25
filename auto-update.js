@@ -11,7 +11,7 @@ drupal.login((err) => {
     console.error(err)
   }
 
-  drupal.loadRestExport('petitionen.json', {}, (err, data) => {
+  drupal.loadRestExport('petitionen.json', { paginated: true }, (err, data) => {
     async.eachSeries(data, (item, done) => {
       const url = item.field_url[0].uri
 
@@ -23,11 +23,31 @@ drupal.login((err) => {
       }
 
       matchingPlatforms[0].get(url, (err, result) => {
-        console.log(item.nid, url)
-        console.log(JSON.stringify(result, null, '  '))
-        done()
+        console.log(item.nid[0].value, url)
+        const update = {}
+
+        if ('count' in result) {
+          if (!item.field_count.length || result.count !== item.field_count[0].value) {
+            update.field_count = [{ value: result.count }]
+            update.field_snapshots = item.field_snapshots.concat([{
+              value: new Date().toISOString().substr(0, 19) + 'Z ' + result.count
+            }])
+          }
+        }
+
+        if (!item.field_offen.length || result.active !== item.field_offen[0].value) {
+          update.field_offen = [{ value: result.active }]
+        }
+
+        if (Object.keys(update).length) {
+          update.type = item.type
+          drupal.nodeSave(item.nid[0].value, update, {}, done)
+        } else {
+          done()
+        }
       })
-      //update(item.nid, done)
+    }, (err) => {
+      console.error(err)
     })
   })
 })
