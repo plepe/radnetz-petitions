@@ -1,4 +1,4 @@
 const Platforms = [
   require('./PlatformWien')
 ]
-const platforms = Platforms.map(P => new P())
+module.exports = Platforms.map(P => new P())
