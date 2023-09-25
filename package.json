@@ -1,0 +1,17 @@
+{
+  "name": "radnetz-petitions",
+  "version": "0.0.0",
+  "description": "Update petition information on Radnetz-Wien Dashboard",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plepe/radnetz-petitions.git"
+  },
+  "author": "Stephan Bösch-Plepelits <skunk@xover.mud.at>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/plepe/radnetz-petitions/issues"
+  },
+  "homepage": "https://github.com/plepe/radnetz-petitions#readme"
+}
