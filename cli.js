@@ -1,9 +1,6 @@
 #!/usr/bin/env node
 
-const Platforms = [
-  require('./src/PlatformWien')
-]
-const platforms = Platforms.map(P => new P())
+const platforms = require('./src/platforms')
 
 const url = process.argv[2]
 
