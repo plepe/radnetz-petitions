@@ -15,6 +15,7 @@
   },
   "homepage": "https://github.com/plepe/radnetz-petitions#readme",
   "dependencies": {
-    "drupal-rest": "github:plepe/drupal-rest-js"
+    "drupal-rest": "github:plepe/drupal-rest-js",
+    "jsdom": "^22.1.0"
   }
 }
