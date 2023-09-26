@@ -35,8 +35,10 @@ drupal.login((err) => {
           }
         }
 
-        if (!item.field_offen.length || result.active !== item.field_offen[0].value) {
-          update.field_offen = [{ value: result.active }]
+        if ('active' in result) {
+          if (!item.field_offen.length || result.active !== item.field_offen[0].value) {
+            update.field_offen = [{ value: result.active }]
+          }
         }
 
         if (Object.keys(update).length) {
