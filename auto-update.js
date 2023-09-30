@@ -3,6 +3,7 @@ const async = require('async')
 
 const DrupalRest = require('drupal-rest')
 const platforms = require('./src/platforms')
+const getCurrentDay = require('./src/getCurrentDay')
 const config = require('./config.json')
 
 const drupal = new DrupalRest(config.drupal)
@@ -38,6 +39,17 @@ drupal.login((err) => {
         if ('active' in result) {
           if (!item.field_offen.length || result.active !== item.field_offen[0].value) {
             update.field_offen = [{ value: result.active }]
+
+            // just switching to closed -> record date
+            if (result.active === false) {
+              update.field_datum_ende = [{ value: getCurrentDay() }]
+            }
+          }
+        }
+
+        if ('startDate' in result) {
+          if (!item.field_datum_start.length || result.startDate !== item.field_datum_start[0].value) {
+            update.field_datum_start = [{ value: result.startDate }]
           }
         }
 
