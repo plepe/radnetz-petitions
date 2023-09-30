@@ -6,6 +6,8 @@ const platforms = require('./src/platforms')
 const getCurrentDay = require('./src/getCurrentDay')
 const config = require('./config.json')
 
+let dryRun = false
+
 const drupal = new DrupalRest(config.drupal)
 drupal.login((err) => {
   if (err) {
@@ -55,7 +57,12 @@ drupal.login((err) => {
 
         if (Object.keys(update).length) {
           update.type = item.type
-          drupal.nodeSave(item.nid[0].value, update, {}, done)
+          if (dryRun) {
+            console.log(item.nid[0].value, JSON.stringify(update, null, '  '))
+            done()
+          } else {
+            drupal.nodeSave(item.nid[0].value, update, {}, done)
+          }
         } else {
           done()
         }
@@ -65,5 +72,3 @@ drupal.login((err) => {
     })
   })
 })
-
-
