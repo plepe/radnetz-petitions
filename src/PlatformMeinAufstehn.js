@@ -15,7 +15,6 @@ module.exports = class PlatformMeinAufstehn {
 
         const div = document.querySelector('.vue-component-loader.h-100')
         const data = JSON.parse(div.getAttribute('data-store-data'))
-        console.log(JSON.stringify(data, null, '  '))
 
         const result = {
           count: data.progress.currentSignaturesCount,
